@@ -1,0 +1,28 @@
+<% if (typeof error != 'undefined') { %>
+  <div class="alert alert-danger" role="alert">
+    <%= error %>
+  </div>
+<% } %>
+<form action="/doctors/<%= _id %>" method="POST">
+  <div class="mb-3">
+    <label for="full_name" class="form-label">Full Name</label>
+    <input type="text" class="form-control" id="full_name" name="full_name"
+           value="<%= full_name %>">
+  </div>
+  <div class="mb-3">
+    <label for="licence_number" class="form-label">Licence Number</label>
+    <input type="text" class="form-control" id="licence_number" name="licence_number"
+           value="<%= licence_number %>">
+  </div>
+  <div class="mb-3">
+    <label for="specialization" class="form-label">Specialization</label>
+    <input type="text" class="form-control" id="specialization" name="specialization"
+           value="<%= specialization %>">
+  </div>
+  <div class="mb-3">
+    <label for="city" class="form-label">City</label>
+    <input type="text" class="form-control" id="city" name="city"
+           value="<%= city %>">
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
