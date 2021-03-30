@@ -83,5 +83,16 @@ router
       })
     }
   })
+  .delete('/doctors/:id', async (req, res) => {
+    // TODO: try catch
+    await Doctor.findByIdAndRemove(req.params.id)
+
+    res.send({
+      error: false,
+      message: `Doctor with id #${req.params.id} removed`
+    });
+  })
+
+module.exports = router;
 
 module.exports = router;
