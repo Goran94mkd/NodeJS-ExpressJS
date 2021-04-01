@@ -1,27 +1,35 @@
-<h3>Doctors</h3>
-<a href="/doctors/create" class="btn btn-primary">Add</a>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">License No.</th>
-      <th scope="col">Name</th>
-      <th scope="col">Specialization</th>
-      <th scope="col">City</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% doctors.forEach(doctor => { %>
-      <tr>
-        <th scope="row"><%= doctor.licence_number %></th>
-        <td><%= doctor.full_name %></td>
-        <td><%= doctor.specialization %></td>
-        <td><%= doctor.city %></td>
-        <td>
-          <a href="/doctors/<%= doctor._id %>" class="btn btn-warning">Edit</a>
-          <button type="button" onclick="deleteDoctor(`<%= doctor._id %>`)" class="btn btn-danger">Delete</button>
-        </td>
-      </tr>
-    <% }) %>
-  </tbody>
-</table>
+<body style="background-color: rgb(230, 230, 230)">
+  <div class="p-3 mb-2 bg-success text-white">
+    <h2>Doctors</h2>
+    <a href="/doctors/create" class="btn alert-info">Add</a>
+    <table class="table table-primary table-hover" style="margin-top: 10px">      
+      <thead>
+        <tr>
+          <th scope="col">License No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Specialization</th>
+          <th scope="col">City</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% doctors.forEach(doctor => { %>
+        <tr>
+          <th scope="row"><%= doctor.licence_number %></th>
+          <td><%= doctor.full_name %></td>
+          <td><%= doctor.specialization %></td>
+          <td><%= doctor.city %></td>
+          <td>
+            <a href="/doctors/<%= doctor._id %>" class="btn btn-warning">
+              Edit
+            </a>
+            <button type="button" onclick="deleteDoctor(`<%= doctor._id %>`)" class="btn btn-danger">
+              Delete
+            </button>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
