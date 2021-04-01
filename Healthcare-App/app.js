@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 var app = express();
 
 mongoose.connect('mongodb://localhost/healthcareapp', {
-  useNewUrlParser: true, useUnifiedTopology: true
+  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true 
 });
 
 // view engine setup
