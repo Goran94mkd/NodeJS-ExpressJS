@@ -35,9 +35,13 @@ router
   })
   .post('/doctors/:id', async (req, res) => {
     try {
-      await Doctor.findByIdAndUpdate(req.params.id, req.body)
-
-      res.redirect('/doctors')
+      await Doctor.findByIdAndUpdate(req.params.id, req.body, { runValidators: true }, function (error) {
+        if (error) {
+          res.send(error.message)
+        } else {
+          res.redirect('/doctors')
+        }
+      })
     } catch (error) {
       res.render('doctors/update', {
         ...req.body,
