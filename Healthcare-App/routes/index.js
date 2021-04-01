@@ -92,6 +92,14 @@ router
       message: `Doctor with id #${req.params.id} removed`
     });
   })
+  .delete('/patients/:id', async (req, res) => {
+    await Patient.findByIdAndRemove(req.params.id)
+
+    res.send({
+      error: false,
+      message: `Patient with id #${req.params.id} removed`
+    });
+  })
 
 module.exports = router;
 

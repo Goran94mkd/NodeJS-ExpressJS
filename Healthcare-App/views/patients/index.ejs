@@ -22,9 +22,8 @@
           <td><%= patient.phone_number %></td>
           <td><%= patient.city %></td>
           <td>
-            <a href="/patients/<%= patient._id %>" class="btn btn-warning"
-              >Edit</a
-            >
+            <a href="/patients/<%= patient._id %>" class="btn btn-warning">Edit</a>
+            <button type="button" onclick="deletePatient(`<%= patient._id %>`)" class="btn btn-danger">Delete</button>
           </td>
         </tr>
         <% }) %>
