@@ -25,3 +25,10 @@ function deletePatient(id) {
       console.log('Se sluci greska pri brisenje patient: ', err);
     });
 }
+
+$(document).ready(function() {
+  $('.select-doctor').select2({
+    placeholder: 'Choose a doctor',
+    allowClear: true
+  });
+});

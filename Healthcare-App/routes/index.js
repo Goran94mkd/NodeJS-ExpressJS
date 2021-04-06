@@ -35,58 +35,70 @@ router
   })
   .post('/doctors/:id', async (req, res) => {
     try {
-      await Doctor.findByIdAndUpdate(req.params.id, req.body, { runValidators: true }, function (error) {
-        if (error) {
-          res.send(error.message)
-        } else {
-          res.redirect('/doctors')
-        }
-      })
+      await Doctor.findByIdAndUpdate(req.params.id, req.body, { runValidators: true })
+      res.redirect('/doctors')
     } catch (error) {
       res.render('doctors/update', {
         ...req.body,
+        _id: req.params.id,
         error: error.message
       })
     }
   })
   .get('/patients', async (req, res) => {
-    const patients = await Patient.find()
+    const patients = await Patient.find().populate('doctor')
 
     res.render('patients/index', { patients: patients })
   })
-  .get('/patients/create', (req, res) => {
-    res.render('patients/create')
+  .get('/patients/create', async (req, res) => {
+    // Prv nacin (async, await)
+    const doctors = await Doctor.find()
+    res.render('patients/create', { doctors })
+
+    // Vtor nacin
+
+    // 61 - 64 (bez async, await) go izvrsuva istoto kako 55-56 
+    // Doctor.find()
+    //   .then(doctors => {
+    //     res.render('patients/create', {doctors})
+    //   })
+
   })
   .get('/patients/:id', async (req, res) => {
     const patient = await Patient.findById(req.params.id)
+    const doctors = await Doctor.find()
 
-    res.render('patients/update', patient)
+    res.render('patients/update', {
+      patient,
+      doctors
+    })
   })
   .post('/patients', async (req, res) => {
     try {
-      const patient = new Patient(req.body)
-      await patient.save()
+      if (req.body.doctor == '') {
+        delete req.body.doctor;
+      }
 
-      res.redirect('/patients')
+      const patient = new Patient(req.body);
+      await patient.save();
+
+      res.redirect('/patients');
     } catch (error) {
+      console.log(error);
       res.render('patients/create', {
         ...req.body,
         error: error.message
-      })
+      });
     }
   })
   .post('/patients/:id', async (req, res) => {
     try {
-      await Patient.findByIdAndUpdate(req.params.id, req.body, { runValidators: true }, function (error) {
-        if (error) {
-          res.send(`Go back... ${error.message}`)
-        } else {
-          res.redirect('/patients')
-        }
-      })
+      await Patient.findByIdAndUpdate(req.params.id, req.body, { runValidators: true })
+      res.redirect('/patients')
     } catch (error) {
       res.render('patients/update', {
         ...req.body,
+        _id: req.params.id,
         error: error.message
       })
     }

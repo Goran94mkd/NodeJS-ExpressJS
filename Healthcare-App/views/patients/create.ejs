@@ -58,6 +58,14 @@
             value="<%= typeof city != 'undefined' ? city : '' %>"
           />
         </div>
+        <div class="mb-3">
+          <select class="select-doctor form-control" name="doctor">
+            <option></option>
+            <% doctors.forEach(doctor => { %>
+              <option value="<%= doctor._id %>"><%= doctor.full_name %></option>
+            <% }) %>
+          </select>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
