@@ -20,17 +20,22 @@
           <th scope="col">Age</th>
           <th scope="col">Phone Number</th>
           <th scope="col">City</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
         <tbody>
           <% patients.forEach(patient => { %>
             <% if (doctors._id.equals(patient.doctor)) { %>
               <tr>
-                <th><%= patient.full_name %></th>
-                <th><%= patient.ssn %></th>
-                <th><%= patient.age %></th>
-                <th><%= patient.phone_number %></th>
-                <th><%= patient.city %></th>
+                <td><%= patient.full_name %></td>
+                <td><%= patient.ssn %></td>
+                <td><%= patient.age %></td>
+                <td><%= patient.phone_number %></td>
+                <td><%= patient.city %></td>
+                <td>
+                  <a href="/patients/<%= patient._id %>" class="btn btn-warning">Edit</a>
+                  <button type="button" onclick="deletePatient(`<%= patient._id %>`)" class="btn btn-danger">Delete</button>
+                </td>
               </tr>
             <% } else { %> 
               <% } 

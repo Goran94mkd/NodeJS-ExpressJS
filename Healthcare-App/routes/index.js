@@ -5,7 +5,6 @@ const Patient = require("../models/patient");
 const doctorsController = require('../controllers/doctors');
 const patientsController = require('../controllers/patients')
 
-
 router
   .get("/", (req, res) => {
     res.render("index", { title: "Express" });
