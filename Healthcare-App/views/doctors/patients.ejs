@@ -1,0 +1,42 @@
+<div style="background-color: rgb(230, 230, 230)">
+  <div class="p-3 mb-2 bg-success text-white">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body" style="background: #aeaeae;">
+        <h5 class="card-title"><%= doctors.full_name %></h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <span class="badge rounded-pill bg-success"><%= doctors.specialization %></span>
+        </h6>
+        <span class="card-text">License no. <%= doctors.licence_number %></span><br>
+        <small class="card-text">Works in <%= doctors.city %></small>
+      </div>
+    </div>
+    <h2>Patients</h2>
+    <a href="/patients/create" class="btn alert-info">Add</a>
+    <table class="table table-primary table-hover" style="margin-top: 10px">
+      <thead class="titles">
+        <tr>
+          <th scope="col">SSN</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">City</th>
+        </tr>
+      </thead>
+        <tbody>
+          <% patients.forEach(patient => { %>
+            <% if (doctors._id.equals(patient.doctor)) { %>
+              <tr>
+                <th><%= patient.full_name %></th>
+                <th><%= patient.ssn %></th>
+                <th><%= patient.age %></th>
+                <th><%= patient.phone_number %></th>
+                <th><%= patient.city %></th>
+              </tr>
+            <% } else { %> 
+              <% } 
+            %> <% }) 
+          %>
+        </tbody>
+    </table>
+  </div>
+</div>

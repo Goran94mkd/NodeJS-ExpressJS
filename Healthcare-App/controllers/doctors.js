@@ -47,5 +47,5 @@ module.exports = {
       error: false,
       message: `Doctor with id #${req.params.id} removed`
     });
-  }
+  },
 }
