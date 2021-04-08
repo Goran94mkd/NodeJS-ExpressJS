@@ -21,6 +21,6 @@ router
   .post("/patients", patientsController.postCreate)
   .post("/patients/:id", patientsController.postUpdate)
   .delete("/patients/:id", patientsController.delete)
-  .get('/doctors/:id/patients', patientsController.patients)
+  .get('/doctors/:id/patients', doctorsController.patients)
   
 module.exports = router;

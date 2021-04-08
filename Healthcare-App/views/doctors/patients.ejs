@@ -27,8 +27,8 @@
           <% patients.forEach(patient => { %>
             <% if (doctors._id.equals(patient.doctor)) { %>
               <tr>
-                <td><%= patient.full_name %></td>
                 <td><%= patient.ssn %></td>
+                <td><%= patient.full_name %></td>
                 <td><%= patient.age %></td>
                 <td><%= patient.phone_number %></td>
                 <td><%= patient.city %></td>
