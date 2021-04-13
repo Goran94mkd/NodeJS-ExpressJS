@@ -1,47 +1,45 @@
-<div style="background-color: rgb(230, 230, 230)">
-  <div class="p-3 mb-2 bg-success text-white">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body" style="background: #aeaeae;">
-        <h5 class="card-title"><%= doctors.full_name %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">
-          <span class="badge rounded-pill bg-success"><%= doctors.specialization %></span>
-        </h6>
-        <span class="card-text">License no. <%= doctors.licence_number %></span><br>
-        <small class="card-text">Works in <%= doctors.city %></small>
-      </div>
+<div class="p-3 mb-2 bg-success text-white">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body" style="background-color: #cfe2ff; color: #000">
+      <h5 class="card-title"><%= doctors.full_name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <span class="badge rounded-pill bg-success"><%= doctors.specialization %></span>
+      </h6>
+      <span class="card-text">License no. <%= doctors.licence_number %></span><br>
+      <small class="card-text">Works in <%= doctors.city %></small>
     </div>
-    <h2>Patients</h2>
-    <a href="/patients/create" class="btn alert-info">Add</a>
-    <table class="table table-primary table-hover" style="margin-top: 10px">
-      <thead class="titles">
-        <tr>
-          <th scope="col">SSN</th>
-          <th scope="col">Full Name</th>
-          <th scope="col">Age</th>
-          <th scope="col">Phone Number</th>
-          <th scope="col">City</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-        <tbody>
-          <% patients.forEach(patient => { %>
-            <% if (doctors._id.equals(patient.doctor)) { %>
-              <tr>
-                <td><%= patient.ssn %></td>
-                <td><%= patient.full_name %></td>
-                <td><%= patient.age %></td>
-                <td><%= patient.phone_number %></td>
-                <td><%= patient.city %></td>
-                <td>
-                  <a href="/patients/<%= patient._id %>" class="btn btn-warning">Edit</a>
-                  <button type="button" onclick="deletePatient(`<%= patient._id %>`)" class="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-            <% } else { %> 
-              <% } 
-            %> <% }) 
-          %>
-        </tbody>
-    </table>
   </div>
+  <h2>Patients</h2>
+  <a href="/patients/create" class="btn alert-info">Add</a>
+  <table class="table table-primary table-hover" style="margin-top: 10px">
+    <thead class="titles">
+      <tr>
+        <th scope="col">SSN</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">City</th>
+        <th scope="col" style="text-align: center;">Actions</th>
+      </tr>
+    </thead>
+      <tbody>
+        <% patients.forEach(patient => { %>
+          <% if (doctors._id.equals(patient.doctor)) { %>
+            <tr>
+              <td><%= patient.ssn %></td>
+              <td><%= patient.full_name %></td>
+              <td><%= patient.age %></td>
+              <td><%= patient.phone_number %></td>
+              <td><%= patient.city %></td>
+              <td style="text-align: center;">
+                <a href="/patients/<%= patient._id %>" class="btn btn-warning">Edit</a>
+                <button type="button" onclick="deletePatient(`<%= patient._id %>`)" class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+          <% } else { %> 
+            <% } 
+          %> <% }) 
+        %>
+      </tbody>
+  </table>
 </div>

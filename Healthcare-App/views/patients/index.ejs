@@ -1,35 +1,33 @@
-<body style="background-color: rgb(230, 230, 230)">
-  <div class="p-3 mb-2 bg-success text-white">
-    <h2 class="header">Patients</h2>
-    <a href="/patients/create" class="btn alert-info">Add</a>
-    <table class="table table-primary table-hover" style="margin-top: 10px">
-      <thead class="titles">
-        <tr>
-          <th scope="col">SSN</th>
-          <th scope="col">Full Name</th>
-          <th scope="col">Age</th>
-          <th scope="col">Phone Number</th>
-          <th scope="col">City</th>
-          <th scope="col">Doctor</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% patients.forEach(patient => { %>
-        <tr>
-          <th scope="row"><%= patient.ssn %></th>
-          <td><%= patient.full_name %></td>
-          <td><%= patient.age %></td>
-          <td><%= patient.phone_number %></td>
-          <td><%= patient.city %></td>
-          <td><%= patient.doctor ? patient.doctor.full_name : '' %></td>
-          <td>
-            <a href="/patients/<%= patient._id %>" class="btn btn-warning">Edit</a>
-            <button type="button" onclick="deletePatient(`<%= patient._id %>`)" class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
-</body>
+<div class="p-3 mb-2 bg-success text-white">
+  <h2>Patients</h2>
+  <a href="/patients/create" class="btn alert-info">Add</a>
+  <table class="table table-primary table-hover" style="margin-top: 10px">
+    <thead class="titles">
+      <tr>
+        <th scope="col">SSN</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">City</th>
+        <th scope="col">Doctor</th>
+        <th scope="col" style="text-align: center;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% patients.forEach(patient => { %>
+      <tr>
+        <th scope="row"><%= patient.ssn %></th>
+        <td><%= patient.full_name %></td>
+        <td><%= patient.age %></td>
+        <td><%= patient.phone_number %></td>
+        <td><%= patient.city %></td>
+        <td><%= patient.doctor ? patient.doctor.full_name : '' %></td>
+        <td style="text-align: center;">
+          <a href="/patients/<%= patient._id %>" class="btn btn-warning">Edit</a>
+          <button type="button" onclick="deletePatient(`<%= patient._id %>`)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

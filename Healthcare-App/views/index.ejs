@@ -1,3 +1,131 @@
-<body style="background-color: rgb(230, 230, 230)">
-  Dashboard
-</body>
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css" />
+
+<div class="container" style="background-color: rgb(244, 244, 248); border-radius: 3%">
+  <div class="row">
+    <div class="col-6 chart">
+      <canvas id="myChart" width="400" height="203"></canvas>
+    </div>
+    <div class="col-6 chart">
+      <canvas id="myChart3" width="450" height="270"></canvas>
+    </div>
+  </div>
+  <div class="col-6 chart">
+    <canvas id="myChart2" width="450" height="200"></canvas>
+  </div>
+</div>
+
+<div class="ejs">
+  <% let medicationArray = [] %> <%prescriptions.forEach(prescription => { %> <%=
+  medicationArray.push(prescription.medication) %> <% }) %>
+  <% let patientsCityArray = [] %> <%patients.forEach(patient => { %> <%=
+  patientsCityArray.push(patient.city) %> <% }) %>
+  <% let cityArray = [] %> <%doctors.forEach(doctor => { %> <%=
+  cityArray.push(doctor.city) %> <% }) %>
+</div>
+
+<script>
+  const medicationArrayScript = "<%= medicationArray  %>";
+  const medicationsArray = medicationArrayScript.split(/[ ,]+/);  
+  // Counting duplicate values in an array
+  const countMedicationsDuplicates = {};
+  medicationsArray.forEach(function (i) {
+    countMedicationsDuplicates[i] = (countMedicationsDuplicates[i] || 0) + 1;
+  });
+  // Get values from an object
+  const medicationsData = Object.values(countMedicationsDuplicates);
+  // Remove duplicate values
+  const medicationsLabels = [...new Set(medicationsArray)];
+
+  let myDoughnutChart = document.getElementById("myChart").getContext("2d");
+  let chart1 = new Chart(myDoughnutChart, {
+    type: "doughnut",
+    data: {
+      labels: medicationsLabels,
+      datasets: [
+        {
+          data: medicationsData,
+          backgroundColor: ["#49A9EA", "#36CAAB", "#34495E"],
+        },
+      ],
+    },
+    options: {
+      title: {text: "Number of Prescriptions by Medication",display: true,},
+    },
+  });
+  const patientsCityArrayScript = "<%= patientsCityArray  %>";
+  const patientsCitiesArray = patientsCityArrayScript.split(/[ ,]+/);
+  // Counting duplicate values in an array
+  const countPatientsDuplicates = {};
+  patientsCitiesArray.forEach(function (i) {
+    countPatientsDuplicates[i] = (countPatientsDuplicates[i] || 0) + 1;
+  });
+  // Get values from an object
+  const patientsCitiesData = Object.values(countPatientsDuplicates);
+  // Remove duplicate values
+  const patientsCitiesLabels = [...new Set(patientsCitiesArray)];
+
+  let myChart2 = document.getElementById("myChart2").getContext("2d");
+  let chart2 = new Chart(myChart2, {
+    type: "bar",
+    data: {
+      labels: patientsCitiesLabels,
+      datasets: [
+        { 
+          data: patientsCitiesData, borderWidth: 0,
+          backgroundColor: ["#49A9EA", "#36CAAB", "#34495E", "#B370CF"],
+          borderColor: ["#49A9EA", "#36CAAB", "#34495E", "#B370CF"]
+        },
+      ],
+    },
+    options: {
+      title: {
+        text: "Number of Patients by City", display: true,
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+  let myChart3 = document.getElementById("myChart3").getContext("2d");
+  const cityArrayScript = "<%= cityArray  %>";
+  const citiesArray = cityArrayScript.split(/[ ,]+/);
+  // Counting duplicate values in an array
+  const countDuplicates = {};
+  citiesArray.forEach(function (i) {
+    countDuplicates[i] = (countDuplicates[i] || 0) + 1;
+  });
+  // Get values from an object
+  const citiesData = Object.values(countDuplicates);
+  // Remove duplicate values
+  const citiesLabels = [...new Set(citiesArray)];
+
+  let chart3 = new Chart(myChart3, {
+    type: "pie",
+    data: {
+      labels: citiesLabels,
+      datasets: [
+        {
+          data: citiesData,
+          backgroundColor: ["#49A9EA", "#36CAAB", "#34495E", "#B370CF"],
+          borderColor: ["#49A9EA", "#36CAAB", "#34495E", "#B370CF"],
+          borderWidth: 0
+        },
+      ],
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      title: { text: "Number of Doctors by City", display: true,
+      },
+      scales: {},
+    },
+  });
+</script>

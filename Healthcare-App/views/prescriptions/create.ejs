@@ -1,0 +1,38 @@
+<% if (typeof error != 'undefined') { %>
+<div class="alert alert-danger" role="alert"><%= error %></div>
+<% } %>
+<div class="card text-white bg-success mb-3" style="max-width: 18rem; margin: auto; text-align: center">
+  <div class="card-body">
+    <form action="/prescriptions" method="POST">
+      <div class="mb-3">
+        <label for="number" class="form-label">No.</label>
+        <input type="text" class="form-control" id="number" name="number" value="<%= typeof number != 'undefined' ? number : '' %>"/>
+      </div>
+      <div class="mb-3">
+        <label for="medication" class="form-label">Medication</label>
+        <input type="text" class="form-control" id="medication" name="medication" value="<%= typeof medication != 'undefined' ? medication : '' %>"/>
+      </div>
+      <div class="mb-3">
+        <label for="frequency" class="form-label">Frequency</label>
+        <input type="text" class="form-control" id="frequency" name="frequency" value="<%= typeof frequency != 'undefined' ? frequency : '' %>"/>
+      </div>
+      <div class="mb-3">
+        <select class="select-doctor form-control" name="doctor">
+          <option></option>
+          <% doctors.forEach(doctor => { %>
+            <option value="<%= doctor._id %>"><%= doctor.full_name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="mb-3">
+        <select class="select-patient form-control" name="patient">
+          <option></option>
+          <% patients.forEach(patient => { %>
+            <option value="<%= patient._id %>"><%= patient.full_name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

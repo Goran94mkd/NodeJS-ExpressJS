@@ -1,0 +1,48 @@
+<% if (typeof error != 'undefined') { %>
+<div class="alert alert-danger" role="alert">
+  <%= error %>
+</div>
+<% } %>
+<div class="card text-white bg-success mb-3" style="max-width: 18rem; margin: auto; text-align: center">
+  <div class="card-body">
+    <form action="/prescriptions/<%= prescription._id %>" method="POST" class="add-card">
+      <div class="mb-3">
+        <label for="number" class="form-label">No.</label>
+        <input type="text" class="form-control" id="number" name="number" value="<%= prescription.number %>">
+      </div>
+      <div class="mb-3">
+        <label for="medication" class="form-label">Medication</label>
+        <input type="text" class="form-control" id="medication" name="medication" value="<%= prescription.medication %>">
+      </div>
+      <div class="mb-3">
+        <label for="frequency" class="form-label">Frequency</label>
+        <input type="text" class="form-control" id="frequency" name="frequency" value="<%= prescription.frequency %>">
+      </div>
+      <div class="mb-3">
+        <select class="select-doctor form-control" name="doctor">
+          <option></option>
+          <% doctors.forEach(doctor => { %>
+            <% if (doctor._id.equals(prescription.doctor)) { %>
+              <option selected value="<%= doctor._id %>"><%= doctor.full_name %></option>
+            <% } else { %>
+              <option value="<%= doctor._id %>"><%= doctor.full_name %></option>
+            <% } %>
+          <% }) %>
+        </select>
+      </div>
+      <div class="mb-3">
+        <select class="select-patient form-control" name="patient">
+          <option></option>
+          <% patients.forEach(patient => { %>
+            <% if (patient._id.equals(prescription.patient)) { %>
+              <option selected value="<%= patient._id %>"><%= patient.full_name %></option>
+            <% } else { %>
+              <option value="<%= patient._id %>"><%= patient.full_name %></option>
+            <% } %>
+          <% }) %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
