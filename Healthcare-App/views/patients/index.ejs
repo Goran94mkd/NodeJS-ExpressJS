@@ -1,6 +1,17 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/patient.css"/>
+
 <div class="p-3 mb-2 bg-success text-white">
   <h2>Patients</h2>
-  <a href="/patients/create" class="btn alert-info">Add</a>
+ 
+  <form action="/patients" method="GET" class="form-inline">
+    <div action="/patients" method="GET" class="form-inline">
+      <div class="form-inline">
+        <a href="/patients/create" class="btn alert-info">Add</a>
+        <input type="text" name="search" placeholder="Patients search..." class="btn alert-info" id="search-input">
+        <input type="submit" value="Search" class="btn alert-info" id="btn-input">
+      </div>
+    </div>
+  </form>
   <table class="table table-primary table-hover" style="margin-top: 10px">
     <thead class="titles">
       <tr>

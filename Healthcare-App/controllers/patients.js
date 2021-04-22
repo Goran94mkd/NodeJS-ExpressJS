@@ -3,9 +3,23 @@ const Doctor = require('../models/doctor');
 
 module.exports = {
   getAll: async (req, res) => {
-    const patients = await Patient.find().populate('doctor')
-
-    res.render('patients/index', { patients: patients })
+    if (req.query.search) {
+      await Patient.find({ age: { $gte: req.query.search } }, function (err, patients) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("patients/index", { patients: patients });
+        }
+      }).populate('doctor');
+    } else {
+      await Patient.find({}, function (err, patients) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("patients/index", { patients: patients });
+        }
+      }).populate('doctor');
+    }
   },
   getOne: async (req, res) => {
     const patient = await Patient.findById(req.params.id)

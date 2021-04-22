@@ -1,0 +1,29 @@
+.th{
+  text-align: center;
+}
+
+#table{
+  margin-top: 10px;
+}
+
+#search-input {
+  width: 243px;
+  margin-left: 64.5%;
+  border-radius: 5px;
+  height: 30px;
+  background-color: white
+}
+
+#btn-input {
+  margin-left: 4px;
+}
+
+#checkbox-div{
+  background-color: rgb(207, 244, 252); 
+  border-radius: 5px; 
+  margin: 0.4% 0% 0% 70%;
+}
+
+#checkbox-label{
+  width: 164px;
+}
